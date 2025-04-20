@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import ModalContainer from './components/modal/ModalContainer.vue';
 import Settings from './components/modal/Settings.vue';
 import Navbar from './components/static/Navbar.vue';
 </script>
 <template>
-<ModalContainer v-slot="{open,close}">
-<Settings :open="open" :close="close"/>
-</ModalContainer>
-<ModalContainer v-slot="{open,close}">
-asdasdsa
-</ModalContainer>
-<div class="dark:bg-bgDark bg-gray-300 w-screen h-screen">
+ <Transition
+    enter-active-class="transition duration-500 ease-out"
+    leave-active-class="transition duration-500 ease-out"
+    enter-from-class="opacity-0"
+    leave-to-class="opacity-0"
+  >
+<Settings/>
+</Transition>
+<div id="main" class="  dark:bg-bgDark bg-gray-300  h-screen w-screen ">
     <Navbar/>
 </div></template>
 <style scoped></style>
