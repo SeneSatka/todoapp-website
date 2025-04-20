@@ -3,13 +3,10 @@ import i18NextVue from "i18next-vue";
 import { type Plugin } from "vue";
 import * as tr from "../locales/tr.json";
 import * as en from "../locales/en.json";
+import { useStore } from "./store";
 const plugin: Plugin = {
   install(app) {
-    let lng = localStorage.getItem("lng");
-    if (!lng) {
-      localStorage.setItem("lng", "en");
-      lng = "en";
-    }
+    const {setLng,lng} = useStore();
     i18next.init({
       lng: lng,
       interpolation: {

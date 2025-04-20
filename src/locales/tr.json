@@ -1,45 +1,43 @@
 {
-    "title": "Todo App",
-    "nav": {
-      "title": "TODO LIST"
+  "title": "Todo uygulaması",
+  "nav": {
+    "title": "TODO LİSTESİ"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "darkTheme": "Koyu Tema",
+    "language": { "title": "Dil", "tr": "Türkçe", "en": "İngilizce" },
+    "footer": "Yazar: SeneSatka"
+  },
+  "addTask": "Görev Oluştur",
+  "taskCreateModal": {
+    "title": "Görev Oluştur",
+    "taskTitle": "Başlık",
+    "status": {
+      "title": "Durum",
+      "incomplete": "Tamamlanmadı",
+      "completed": "Tamamlandı"
     },
-    "settings": {
-      "title": "Settings",
-      "darkTheme": "Dark Theme",
-      "language": { "title": "Language", "tr": "Turkish", "en": "English" },
-      "footer": "Author: SeneSatka"
+    "create": "Oluştur!"
+  },
+  "taskEditModal": {
+    "title": "Görevi Düzenle",
+    "taskTitle": "Başlık",
+    "status": {
+      "title": "Durum",
+      "incomplete": "Tamamlanmadı",
+      "completed": "Tamamlandı"
     },
-    "addTask": "Create Task",
-    "taskCreateModal": {
-      "title": "Create Task",
-      "taskTitle": "Title",
-      "status": {
-        "title": "Status",
-        "incomplete": "Incomplete",
-        "completed": "Completed"
-      },
-      "create": "Create!"
+    "save": "Kaydet!"
+  },
+  "taskDeleteModal": {
+    "title": "Görevi Sil",
+    "taskTitle": "Başlık",
+    "status": {
+      "title": "Durum",
+      "incomplete": "Tamamlanmadı",
+      "completed": "Tamamlandı"
     },
-  
-    "taskEditModal": {
-      "title": "Edit Task",
-      "taskTitle": "Title",
-      "status": {
-        "title": "Status",
-        "incomplete": "Incomplete",
-        "completed": "Completed"
-      },
-      "save": "Save!"
-    },
-  
-    "taskDeleteModal": {
-      "title": "Delete Task",
-      "taskTitle": "Title",
-      "status": {
-        "title": "Status",
-        "incomplete": "Incomplete",
-        "completed": "Completed"
-      },
-      "delete": "Delete!"
-    }
+    "delete": "Sil!"
   }
+}

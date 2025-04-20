@@ -2,7 +2,7 @@
 <template><div
     class="h-14 bg-gray-300 dark:bg-bgDark flex items-center p-4 border-b-gray-400 dark:border-b-borderDark border-b"
   >
-    <span class="text-3xl font-bold text-gray-900 dark:text-white">TODO APP</span>
+    <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ $t("nav.title") }}</span>
     <div class="m-auto" />
     <span class="cursor-pointer" id="settings-btn" @click="() => null"
       ><i
