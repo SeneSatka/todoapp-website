@@ -1,18 +1,30 @@
 import { defineStore } from 'pinia'
+type Modals="edit"|"create"|"delete"|"settings"|"none"
+type Theme = "light" | "dark"
+export interface State {
+  openedModal: Modals,
+  theme: Theme,
+  lng: string,
+  todos: Array<{ date: number, title: string, completed: boolean }>
+}
 export const useStore= defineStore('main', {
-  state: () => ({
-    isSettingsOpen: false,
-    theme: localStorage.getItem("theme") || "light",
+  state: ():State => {
+    return {
+    openedModal: "none",
+    theme: (localStorage.getItem("theme") as Theme) || "light",
     lng: localStorage.getItem("lng") || "en",
-  }),
+    todos: [],
+  }
+  },
   actions: {
-    openSetting() {
-      this.isSettingsOpen = true;
+    openModal(a:Modals) {
+      this.openedModal = a;
     },
-    closeSetting() {
-      this.isSettingsOpen = false;
+    closeModal() {
+      this.openedModal = "none";
     },
-    setTheme(theme: string) {
+  
+    setTheme(theme: Theme) {
       this.theme = theme;
       localStorage.setItem("theme", theme);
       if (theme == "dark") {
@@ -24,6 +36,10 @@ export const useStore= defineStore('main', {
     },
     setLng(lng: string) {
       this.lng = lng;
-},},
-persist:true
+    },
+},
+persist:{
+  omit:['openedModal'],
+  storage: localStorage,
+}
 })

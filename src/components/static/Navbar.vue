@@ -7,7 +7,7 @@ import { useStore } from '@/utils/store';
   >
     <span class="text-3xl font-bold text-gray-900 dark:text-white">{{ $t("nav.title") }}</span>
     <div class="m-auto" />
-    <span class="cursor-pointer" id="settings-btn" @click="() => useStore().openSetting()"
+    <span class="cursor-pointer" id="settings-btn" @click="() => useStore().openModal('settings')"
       ><i
         class="fa-solid fa-gear fa-2xl dark:text-gray-300 text-gray-900 hover:text-gray-500 hover:dark:text-gray-100 duration-500 ease-in-out"
       ></i
