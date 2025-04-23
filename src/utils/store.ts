@@ -1,10 +1,9 @@
-import { add } from 'date-fns'
-import { t } from 'i18next'
 import { defineStore } from 'pinia'
 type Modals="edit"|"create"|"delete"|"settings"|"none"
 type Theme = "light" | "dark"
 export type Task={ date: number, title: string, completed: boolean }
 export interface State {
+  editingTaskId: number,
   openedModal: Modals,
   theme: Theme,
   lng: string,
@@ -13,6 +12,7 @@ export interface State {
 export const useStore= defineStore('main', {
   state: ():State => {
     return {
+    editingTaskId: 0,
     openedModal: "none",
     theme: (localStorage.getItem("theme") as Theme) || "light",
     lng: localStorage.getItem("lng") || "en",
@@ -40,23 +40,39 @@ export const useStore= defineStore('main', {
     setLng(lng: string) {
       this.lng = lng;
     },
-    addTask(title: string) {
-      const date = Date.now();
-      this.todos.push({
-        date: date,
-        title: title,
-        completed: false,
-      });
+    refreshTasks() {
+      this.todos = [...this.todos.sort((a, b) => {
+        if (a.completed !== b.completed) {
+          return a.completed ? 1 : -1;
+        }
+        return a.date - b.date;
+      })];
+    },
+    setEditingTaskId(id: number) {
+      this.editingTaskId = id;
+    },
+    getTask(id:number) {
+      const task = this.todos.find((task) => task.date === id);
+      return task;
+    },
+    addTask(data:Task) {
+      this.todos.push(data);
+      this.refreshTasks();
     },
     deleteTask(id:number) {
       this.todos = this.todos.filter((task) => task.date !== id);
+      this.refreshTasks();
     },
-    editTask(id:number,data:Task){
-this.deleteTask(id)
-this.todos.push(data)
-  }},
+    editTask(id: number, data: Task) {
+      const index = this.todos.findIndex((task) => task.date === id);
+      if (index !== -1) {
+        this.todos[index] = { ...this.todos[index], ...data };
+        this.refreshTasks();
+      }
+    }
+  },
 persist:{
-  omit:['openedModal'],
+  omit:['openedModal',"editingTaskId"],
   storage: localStorage,
 }
 })

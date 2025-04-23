@@ -69,14 +69,46 @@ onMounted(()=>{
   </div>
 
   <div
-    class="bg-[#ecedf6] dark:bg-[#202324] min-h-16 flex flex-col gap-2 p-4 rounded-lg mx-16"
+    class="bg-[#ecedf6] dark:bg-[#202324] min-h-16 flex flex-col  p-4 rounded-lg mx-16"
   >
-    <TaskItem
-      v-for="task in tasks"
-      :completed="task.completed"
-      :date="task.date"
-      :title="task.title"
-    />
-    </div></div>
-</div></template>
-<style scoped></style>
+    <TransitionGroup
+      name="task"
+      tag="div"
+      enter-active-class="transition duration-500 ease-out"
+      leave-active-class="transition duration-500 ease-out opacity-0"
+      move-class="task-move"
+    >
+      <TaskItem
+        v-for="task in tasks"
+        :key="task.date"
+        :completed="task.completed"
+        :date="task.date"
+        :title="task.title"
+      />
+    </TransitionGroup>
+  </div>
+</div>
+</div>
+</template>
+<style scoped>
+/* Animasyon için gerekli CSS */
+.task-move {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.task-enter-active,
+.task-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.task-enter-from {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.task-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.task-leave-active {
+  position: absolute; /* Silinen öğenin diğer öğeleri etkilememesi için */
+  width: 100%; /* Genişliği koruyarak düzgün bir animasyon sağlar */
+}
+</style>
