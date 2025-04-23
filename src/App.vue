@@ -77,6 +77,7 @@ onMounted(()=>{
       enter-active-class="transition duration-500 ease-out"
       leave-active-class="transition duration-500 ease-out opacity-0"
       move-class="task-move"
+      v-if="tasks.length > 0"
     >
       <TaskItem
         v-for="task in tasks"
@@ -86,6 +87,9 @@ onMounted(()=>{
         :title="task.title"
       />
     </TransitionGroup>
+    <div
+      v-else
+      class="flex flex-col items-center justify-center h-full w-full  text-gray-400  font-semibold text-lg">{{ $t("empty") }}</div>
   </div>
 </div>
 </div>

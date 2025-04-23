@@ -41,5 +41,6 @@
         "completed": "Completed"
       },
       "delete": "Delete!"
-    }
+    },
+    "empty": "No Task Found"
   }

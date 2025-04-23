@@ -39,5 +39,6 @@
       "completed": "Tamamlandı"
     },
     "delete": "Sil!"
-  }
+  },
+  "empty":"Görev Bulunamadı"
 }
